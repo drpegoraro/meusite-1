@@ -1,4 +1,4 @@
-var enderecoContrato = "0x32A09C4032aC67903156Ad868B73fa096F0aCB85";
+var enderecoContrato = "0xE9Af095a9CD3154F3eA2cf302980c9643E5dD61E";
 var provedor = new ethers.providers.Web3Provider(web3.currentProvider);
 ethereum.enable();
 var signatario = provedor.getSigner();
@@ -30,7 +30,7 @@ function registrarMudancaStatus() {
             caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
         })
     }
-    function fimDoContrato() {
+    /*function fimDoContrato() {
         var textoCampo = document.frmFim.txtFimDoContrato.value;
         var caixafimTx = document.getElementById("caixaFimTx");
         if (textoCampo.length === 3) {
@@ -56,7 +56,9 @@ function registrarMudancaStatus() {
                 caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
             })
         }
+    
 }
+*/
 
 function buscaStatusContrato() {
     var status;
