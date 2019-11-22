@@ -30,7 +30,7 @@ function registrarMudancaStatus() {
             caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
         })
     }
-    function fimDoContrato() {
+    /*function fimDoContrato() {
         var textoCampo = document.frmFim.txtFimDoContrato.value;
         var caixafimTx = document.getElementById("caixaFimTx");
         if (textoCampo.length === 3) {
@@ -56,6 +56,7 @@ function registrarMudancaStatus() {
                 caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
             })
         }
+        */
 }
 
 function buscaStatusContrato() {
