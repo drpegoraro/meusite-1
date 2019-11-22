@@ -10,7 +10,7 @@
 <body>
     <h1>Seguro Fiança</h1>
     <h2>Status do Contrato</h2>
-    <div>O contrato é: 0x9b9625bD99E2a338FB82328E21eAF785452e724c</div>
+    <div>O contrato é: 0x2E429A84F1D5147CBC5Bb38ED2b37a05a1A788Cb</div>
     <div>A situação de pagamento é: <span id="campoStatus">&nbsp;</span></div>
     <div>O valor do aluguel é: <span id="campoValorAluguel">&nbsp;</span></div>
     <hr>
@@ -19,6 +19,22 @@
         <div>
             <label for="txtStatusPagamentoAluguel">Informe o novo Status: </label>
             <input type="text" name="txtStatusPagamentoAluguel" id="txtStatusPagamentoAluguel" maxlength="8">
+        </div>
+        <div>
+            &nbsp;
+        </div>
+        <div>
+            <button type="submit">Registrar Novo Status</button>
+        </div>
+        <div><br><hr></div>
+        <div id="caixaStatusTx">
+            &nbsp;
+        </div>
+        <h1>Formulário de Fim do contrato</h1>
+    <form action="#" method="get" id="frmfim" name="frmSfim" onsubmit="registrarFimContrato(); return false;">
+        <div>
+            <label for="txtFimDoContrato">Informe o fim do contrato: </label>
+            <input type="text" name="txtFimDoContrato" id="txtFimDoContrato" maxlength="3">
         </div>
         <div>
             &nbsp;
