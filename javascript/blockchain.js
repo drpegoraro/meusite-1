@@ -1,4 +1,4 @@
-var enderecoContrato = "0xb85808E45Bf1fed050DEda9235C24e11960B3016";
+var enderecoContrato = "0x8427b5e897F536c695Dd843B32d6Dd11719b5400";
 var provedor = new ethers.providers.Web3Provider(web3.currentProvider);
 ethereum.enable();
 var signatario = provedor.getSigner();
@@ -32,7 +32,7 @@ function registrarMudancaStatus() {
     }
     function fimDoContrato() {
         var textoCampo = document.frmFim.txtFimDoContrato.value;
-        var caixafimTx = document.getElementById("caixaFimTx");
+        var caixaFimTx = document.getElementById("caixaFimTx");
         if (textoCampo.length === 3) {
             caixaFimTx.innerHTML = "Enviando transação...";
             contrato.fimDoContrato(textoCampo)
@@ -42,24 +42,22 @@ function registrarMudancaStatus() {
                 transacao.wait()
                 .then( (resultado) => {
                     buscaFimContrato();
-                    caixaStatusTx.innerHTML = "Transação realizada.";
+                    caixaFimTx.innerHTML = "Transação realizada.";
                 })        
                 .catch( (err) => {
-                    console.error("registrarMudancaStatus - Aguardando tx ser minerada");
+                    console.error("registrarFimContrato - Aguardando tx ser minerada");
                     console.error(err);
-                    caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
+                    caixaFimTx.innerHTML = "Algo saiu errado: " + err.message;
                 })
             })
             .catch( (err) => {
                 console.error("registrarFimContrato");
                 console.error(err);
-                caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
+                caixafimTx.innerHTML = "Algo saiu errado: " + err.message;
             })
         }
     
 }
-*/
-
 function buscaStatusContrato() {
     var status;
     var campoStatus = document.getElementById("campoStatus");     
