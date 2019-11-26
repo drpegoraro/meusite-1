@@ -35,6 +35,45 @@ function registrarMudancaStatus()
 }
 
 function fimDoContrato() {
+    
+    var caixaFimTx = document.getElementById("caixaFimTx");
+        caixaFimTx.innerHTML = "Enviando transação...";
+        contrato.fimDoContrato()
+        .then( (transacao) => {
+            console.log("registrarFimDoContrato - Transacao ", transacao);   
+            caixaFimTx.innerHTML = "Transação enviada. Aguardando processamento...";
+            transacao.wait()
+            .then( (resultado) => {
+                buscaFimContrato();
+                caixaFimTx.innerHTML = "Contrato Encerrado";
+            })        
+            .catch( (err) => {
+                console.error("registrarFimContrato - Aguardando tx ser minerada");
+                console.error(err);
+                caixaFimTx.innerHTML = "Algo saiu errado: " + err.message;
+            })
+        })
+        .catch( (err) => {
+                console.error("registrarFimContrato");
+                console.error(err);
+                caixafimTx.innerHTML = "Algo saiu errado: " + err.message;
+        })
+}
+
+function buscaStatusContrato() {
+    var status;
+    var campoStatus = document.getElementById("campoStatus");     
+    contrato.statusPagamentoAluguel()
+    .then( (resultado) => {
+        campoStatus.innerHTML = resultado;
+    })
+    .catch( (err) => {
+        console.error(err);
+        campoStatus.innerHTML = err;
+    });
+}
+/*
+function fimDoContrato() {
     var textoCampo = document.frmFim.txtFimDoContrato.value;
     var caixaFimTx = document.getElementById("caixaFimTx");
     if (textoCampo.length === 3) 
@@ -62,16 +101,4 @@ function fimDoContrato() {
         })
     }
 }
-
-function buscaStatusContrato() {
-    var status;
-    var campoStatus = document.getElementById("campoStatus");     
-    contrato.statusPagamentoAluguel()
-    .then( (resultado) => {
-        campoStatus.innerHTML = resultado;
-    })
-    .catch( (err) => {
-        console.error(err);
-        campoStatus.innerHTML = err;
-    });
-}
+*/
