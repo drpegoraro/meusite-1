@@ -4,10 +4,12 @@ ethereum.enable();
 var signatario = provedor.getSigner();
 var contrato = new ethers.Contract(enderecoContrato, abiContrato, signatario);
 
-function registrarMudancaStatus() {
+function registrarMudancaStatus() 
+{
     var textoCampo = document.frmStatus.txtStatusPagamentoAluguel.value;
     var caixaStatusTx = document.getElementById("caixaStatusTx");
-    if (textoCampo.length === 8) {
+    if (textoCampo.length === 8)
+    {
         caixaStatusTx.innerHTML = "Enviando transação...";
         contrato.mudaStatusPagamento(textoCampo)
         .then( (transacao) => {
@@ -30,34 +32,37 @@ function registrarMudancaStatus() {
             caixaStatusTx.innerHTML = "Algo saiu errado: " + err.message;
         })
     }
-    function fimDoContrato() {
-        var textoCampo = document.frmFim.txtFimDoContrato.value;
-        var caixaFimTx = document.getElementById("caixaFimTx");
-        if (textoCampo.length === 3) {
-            caixaFimTx.innerHTML = "Enviando transação...";
-            contrato.fimDoContrato(textoCampo)
-            .then( (transacao) => {
-                console.log("registrarFimDoContrato - Transacao ", transacao);   
-                caixaFimTx.innerHTML = "Transação enviada. Aguardando processamento...";
-                transacao.wait()
-                .then( (resultado) => {
-                    buscaFimContrato();
-                    caixaFimTx.innerHTML = "Transação realizada.";
-                })        
-                .catch( (err) => {
-                    console.error("registrarFimContrato - Aguardando tx ser minerada");
-                    console.error(err);
-                    caixaFimTx.innerHTML = "Algo saiu errado: " + err.message;
-                })
-            })
+}
+
+function fimDoContrato() {
+    var textoCampo = document.frmFim.txtFimDoContrato.value;
+    var caixaFimTx = document.getElementById("caixaFimTx");
+    if (textoCampo.length === 3) 
+    {
+        caixaFimTx.innerHTML = "Enviando transação...";
+        contrato.fimDoContrato(textoCampo)
+        .then( (transacao) => {
+            console.log("registrarFimDoContrato - Transacao ", transacao);   
+            caixaFimTx.innerHTML = "Transação enviada. Aguardando processamento...";
+            transacao.wait()
+            .then( (resultado) => {
+                buscaFimContrato();
+                caixaFimTx.innerHTML = "Transação realizada.";
+            })        
             .catch( (err) => {
+                console.error("registrarFimContrato - Aguardando tx ser minerada");
+                console.error(err);
+                caixaFimTx.innerHTML = "Algo saiu errado: " + err.message;
+            })
+        })
+        .catch( (err) => {
                 console.error("registrarFimContrato");
                 console.error(err);
                 caixafimTx.innerHTML = "Algo saiu errado: " + err.message;
-            })
-        }
-    
+        })
+    }
 }
+
 function buscaStatusContrato() {
     var status;
     var campoStatus = document.getElementById("campoStatus");     
