@@ -46,7 +46,8 @@ function encerrarContrato()
             transacao.wait()
             .then((resultado)=>
             {
-                buscaFimContrato();
+                buscaStatusContrato();
+                textoEncerrar.innerHTML = "Transação realizada.";
             })
             .catch((err) =>
             {
