@@ -33,9 +33,10 @@ function registrarMudancaStatus()
         })
     }
 }
+
 function encerrarContrato()
 {
-    var textoEncerrar = document.getElementById("encerrarContratoTx");
+    var textoEncerrar = document.getElementById("encerrarContratotx");
     textoEncerrar.innerHTML="conectando para encerramento de contrato ...";
     contrato.fimDoContrato()
     .then( (transacao)=>
@@ -55,6 +56,7 @@ function encerrarContrato()
             })
      })
 }
+
 function buscaStatusContrato() {
     var status;
     var campoStatus = document.getElementById("campoStatus");     
