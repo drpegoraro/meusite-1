@@ -33,33 +33,36 @@ function registrarMudancaStatus()
         })
     }
 }
+function encerrarContrato()
+{
+    var textoEncerrar = document.getElementById("encerrarContratoTx");
 
-function fimDoContrato() {
-    
-    var caixaFimTx = document.getElementById("caixaFimTx");
-        caixaFimTx.innerHTML = "Enviando transação...";
-        contrato.fimDoContrato()
-        .then( (transacao) => {
-            console.log("registrarFimDoContrato - Transacao ", transacao);   
-            caixaFimTx.innerHTML = "Transação enviada. Aguardando processamento...";
+    textoEncerrar.innerHTML="conectando para encerramento de contrato ...";
+    contrato.fimDoContrato()
+    .then( (transacao)=>
+    {
+            console.log("encerrarContrato - Transacao", transacao);
+            textoEncerrar.innerHTML="aguarde encerrando o contrato ...";
+        
             transacao.wait()
-            .then( (resultado) => {
+            .then((resultado)=>
+            {
                 buscaFimContrato();
-                caixaFimTx.innerHTML = "Contrato Encerrado";
-            })        
-            .catch( (err) => {
-                console.error("registrarFimContrato - Aguardando tx ser minerada");
-                console.error(err);
-                caixaFimTx.innerHTML = "Algo saiu errado: " + err.message;
             })
-        })
-        .catch( (err) => {
-                console.error("registrarFimContrato");
+            .catch((err) =>
+            {
+                console.error("encerrarContrato - Aguardando tx ser minerada");
                 console.error(err);
-                caixafimTx.innerHTML = "Algo saiu errado: " + err.message;
-        })
+                textoEncerrar.innerHTML="erro ao se conectar ...";
+            })
+     })
+     .catch((err)=>
+     {
+            console.error("encerrarContrato - Aguardando tx ser minerada");
+            console.error(err);
+            textoEncerrar.innerHTML="erro ao se conectar ...";
+     })
 }
-
 function buscaStatusContrato() {
     var status;
     var campoStatus = document.getElementById("campoStatus");     
@@ -72,33 +75,3 @@ function buscaStatusContrato() {
         campoStatus.innerHTML = err;
     });
 }
-/*
-function fimDoContrato() {
-    var textoCampo = document.frmFim.txtFimDoContrato.value;
-    var caixaFimTx = document.getElementById("caixaFimTx");
-    if (textoCampo.length === 3) 
-    {
-        caixaFimTx.innerHTML = "Enviando transação...";
-        contrato.fimDoContrato(textoCampo)
-        .then( (transacao) => {
-            console.log("registrarFimDoContrato - Transacao ", transacao);   
-            caixaFimTx.innerHTML = "Transação enviada. Aguardando processamento...";
-            transacao.wait()
-            .then( (resultado) => {
-                buscaFimContrato();
-                caixaFimTx.innerHTML = "Transação realizada.";
-            })        
-            .catch( (err) => {
-                console.error("registrarFimContrato - Aguardando tx ser minerada");
-                console.error(err);
-                caixaFimTx.innerHTML = "Algo saiu errado: " + err.message;
-            })
-        })
-        .catch( (err) => {
-                console.error("registrarFimContrato");
-                console.error(err);
-                caixafimTx.innerHTML = "Algo saiu errado: " + err.message;
-        })
-    }
-}
-*/
